@@ -1,19 +1,13 @@
-import React, {Component} from 'react';
-import './App.css';
-import Home from './components/Home';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from 'react-router-dom';
-import Container from '@material-ui/core/Container';
+import React, { Component } from "react";
+import "./App.css";
+import Home from "./components/Home";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Container from "@material-ui/core/Container";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.routes = [
-      {path: '/', Component: Home}
-    ];
+    this.routes = [{ path: "/", Component: Home }];
   }
 
   render() {
@@ -22,12 +16,12 @@ class App extends Component {
         <div className="App">
           <Switch>
             <Container className="container">
-              {this.routes.map(({path, Component}) => (
+              {this.routes.map(({ path, Component }) => (
                 <Route key={path} exact path={path}>
-                  {({match}) => (
-                      <div className="page">
-                        <Component/>
-                      </div>
+                  {({ match }) => (
+                    <div className="page">
+                      <Component />
+                    </div>
                   )}
                 </Route>
               ))}

@@ -15,10 +15,10 @@ class QueryEngine:
       self.setup_default()
   
   def setup_default(self):
-    self.host = "127.0.0.1"
-    self.user = "root"
-    self.password = "InvyCheck1103"
-    self.database = "testschema"
+    self.host = "invycheck-rds.c7l0e0kjkc0s.us-east-1.rds.amazonaws.com"
+    self.user = "admin"
+    self.password = "Monkey90"
+    self.database = "invycheck"
   
   def connect(self):
     if(self.connected):

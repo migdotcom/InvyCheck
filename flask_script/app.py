@@ -1,7 +1,8 @@
 from flask import Flask, request, jsonify
 from Response import Response
 from flask_cors import CORS
-customHost = "192.168.1.80"
+import LocalHostIP
+customHost = LocalHostIP.getLocalIP()
 resp = Response()
 app = Flask(__name__)
 CORS(app)

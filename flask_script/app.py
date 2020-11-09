@@ -9,7 +9,7 @@ CORS(app)
 
 @app.route("/api/getItems", methods = ['GET'])
 def getItem():
-    result = resp.get(f"SELECT * FROM testtable")
+    result = resp.get(f"SELECT * FROM category")
     return result
 
 if __name__ == '__main__': 

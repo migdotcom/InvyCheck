@@ -15,10 +15,10 @@ class QueryEngine:
       self.setup_default()
   
   def setup_default(self):
-    self.host = "127.0.0.2"
+    self.host = "127.0.0.1"
     self.user = "root"
-    self.password = "root"
-    self.database = "sample_schema"
+    self.password = "InvyCheck1103"
+    self.database = "testschema"
   
   def connect(self):
     if(self.connected):

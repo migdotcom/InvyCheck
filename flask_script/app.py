@@ -2,14 +2,15 @@ from flask import Flask, request, jsonify
 from Response import Response
 from flask_cors import CORS
 import LocalHostIP
+from query_classes.Category import Category
 customHost = LocalHostIP.getLocalIP()
-resp = Response()
 app = Flask(__name__)
 CORS(app)
 
-@app.route("/api/getItems", methods = ['GET'])
-def getItem():
-    result = resp.get(f"SELECT * FROM category")
+@app.route("/api/getCategories", methods = ['GET'])
+def getCategories():
+    category = Category()
+    result = category.getCategories()
     return result
 
 if __name__ == '__main__': 

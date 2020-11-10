@@ -35,6 +35,22 @@ def getFoodInventory():
     result = foodInventory.getFoodInventory()
     return result
 
+@app.route("/api/addFoodInventory", methods=['POST'])
+def addFoodInventory():
+    response = Response()
+    if not request.get_json():
+        return jsonify(Data="Empty")
+    # content = request.data
+    # valid = validateAddFoodInventory(content)
+    # if valid == 'None':
+    content = request.get_json()
+    content = content['payload']
+    foodInventory = FoodInventory()
+    return foodInventory.addFoodInventory(content)
+    # else:
+    #    return jsonify(Error=valid)
+    
+
 if __name__ == '__main__': 
     app.jinja_env.cache = {}
     app.run(host=customHost)

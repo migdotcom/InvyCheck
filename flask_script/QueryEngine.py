@@ -39,9 +39,15 @@ class QueryEngine:
   def do_query(self, query_string):
     if(not self.connected):
         return
-    mycusor = self.con.cursor(dictionary=True)
-    mycusor.execute(query_string)
-    result = mycusor.fetchall()
+    mycursor = self.con.cursor(dictionary=True)
+    mycursor.execute(query_string)
+    return mycursor
+
+  def get_query(self, query_string):
+    if(not self.connected):
+        return
+    mycursor = self.do_query(query_string)
+    result = mycursor.fetchall()
     # List to return all results
     return json.dumps(result)
   

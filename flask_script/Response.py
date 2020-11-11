@@ -7,12 +7,13 @@ class Response:
         self.qe.connect()
 
     def get(self, query):
-        result = self.qe.do_query(query)
+        result = self.qe.get_query(query)
         return result
 
     def post(self, query):
-        result = self.qe.do_query(query)
-        return result
+        self.qe.do_query(query)
+        self.qe.commit()
+        return {}
 
     def delete(self, query):
         result = self.qe.do_query(query)

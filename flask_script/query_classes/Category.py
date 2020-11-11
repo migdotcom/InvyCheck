@@ -6,6 +6,8 @@ class Category:
         self.table = 'category'
         self.categoryID = 'categoryID'
         self.categoryName = 'categoryName'
+        self.categoryIDParam = self.table + '.' + self.categoryID
+        self.categoryNameParam = self.table + '.' + self.categoryName
         self.response = Response()
 
     def getCategories(self):

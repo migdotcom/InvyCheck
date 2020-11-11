@@ -6,6 +6,8 @@ class Food:
         self.table = 'food'
         self.foodID = 'foodID'
         self.foodName = 'foodName'
+        self.foodIDParam = self.table + '.' + self.foodID
+        self.foodNameParam = self.table + '.' + self.foodName
         self.response = Response()
 
     def getFoodItems(self):

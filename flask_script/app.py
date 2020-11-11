@@ -49,8 +49,13 @@ def addFoodInventory():
     return foodInventory.addFoodInventory(content)
     # else:
     #    return jsonify(Error=valid)
-    
 
+@app.route("/api/getFoodInventoryByCat", methods = ['GET'])
+def getFoodInventoryByCat():
+    foodInventoryByCat = FoodInventory()
+    result = foodInventoryByCat.getFoodInventoryByCat()
+    return result
+    
 if __name__ == '__main__': 
     app.jinja_env.cache = {}
     app.run(host=customHost)

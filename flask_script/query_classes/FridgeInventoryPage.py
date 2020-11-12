@@ -32,13 +32,17 @@ class FridgeInventoryPage:
         foodItems = "foodItems"
         jsonObjectCategories = json.loads(resultCategories)
         jsonObjectFoods = json.loads(resultFoods) 
-        
-        for index, item in enumerate(jsonObjectCategories):
-            jsonObjectCategories[index].update({foodItems:[]})
 
-        for indexCat in range(len(jsonObjectCategories)):
-            for indexFood in range(len(jsonObjectFoods)): 
-                if jsonObjectCategories[indexCat][categoryID] == jsonObjectFoods[indexFood][categoryID]:
-                    jsonObjectCategories[indexCat][foodItems].append(jsonObjectFoods[indexFood])
+        for eachFoodItem in jsonObjectFoods: 
+            for eachCategory in jsonObjectCategories:
+                if eachFoodItem[categoryID] == eachCategory[categoryID]:
+                    newFoodItemModel = {
+                        self.food.foodID: eachFoodItem[self.food.foodID],
+                        self.food.foodName: eachFoodItem[self.food.foodName],
+                        self.foodInv.amount: eachFoodItem[self.foodInv.amount]
+                    }
+                    if not foodItems in eachCategory:
+                        eachCategory.update({foodItems:[]})
+                    eachCategory[foodItems].append(newFoodItemModel)
 
         return json.dumps(jsonObjectCategories)

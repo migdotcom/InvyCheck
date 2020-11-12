@@ -83,7 +83,7 @@ export class Home extends React.Component {
                 <ListSubheader className={classes.subheader}>
                   {categoryName}
                 </ListSubheader>
-                {foodItems.map( ({categoryID, foodID, foodName, amount}) => (<ListItem button>
+                {foodItems.map( ({foodID, foodName, amount}) => (<ListItem button>
                   <ListItemAvatar>
                     <Avatar alt="Profile Picture" />
                   </ListItemAvatar>

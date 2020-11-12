@@ -2,7 +2,7 @@ import {ip} from './../LocalHostIP';
 class RESTApi {
   constructor() {
     this.port = ip;
-    this.getFridgeInventoryApi = "/api/getFoodInventoryByCat";
+    this.getFridgeInventoryApi = "api/getFoodInventoryByCat";
   }
 
   getFridgeInventory(){

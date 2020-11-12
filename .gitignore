@@ -8,6 +8,7 @@ __pycache__/
 
 # Skip Host IP
 flask_script/LocalHostIP.py
+react/LocalHostIP.js
 
 # Distribution / packaging
 .Python

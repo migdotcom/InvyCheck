@@ -1,6 +1,5 @@
 from QueryEngine import QueryEngine
 
-
 class Response:
     def __init__(self):
         self.qe = QueryEngine()

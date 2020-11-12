@@ -6,6 +6,7 @@ from query_classes.Category import Category
 from query_classes.Food import Food
 from query_classes.FoodInventory import FoodInventory
 from query_classes.CategoryLookup import CategoryLookup
+from query_classes.FridgeInventoryPage import FridgeInventoryPage
 
 customHost = LocalHostIP.getLocalIP()
 app = Flask(__name__)
@@ -49,8 +50,13 @@ def addFoodInventory():
     return foodInventory.addFoodInventory(content)
     # else:
     #    return jsonify(Error=valid)
-    
 
+@app.route("/api/getFoodInventoryByCat", methods = ['GET'])
+def getFoodInventoryByCat():
+    fridgeInvPage = FridgeInventoryPage()
+    result = fridgeInvPage.getFoodInventoryByCat()
+    return result
+    
 if __name__ == '__main__': 
     app.jinja_env.cache = {}
     app.run(host=customHost)

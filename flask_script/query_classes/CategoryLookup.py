@@ -6,6 +6,8 @@ class CategoryLookup:
         self.table = 'category_lookup'
         self.foodID = 'foodID'
         self.categoryID = 'categoryID'
+        self.foodIDParam = self.table + '.' + self.foodID
+        self.categoryIDParam = self.table + '.' + self.categoryID
         self.response = Response()
 
     def getCategoryLookup(self):

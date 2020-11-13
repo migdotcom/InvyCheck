@@ -36,30 +36,39 @@ class FridgeInventoryPage:
         for eachFoodItem in jsonObjectFoods: 
             for eachCategory in jsonObjectCategories:
                 if eachFoodItem[categoryID] == eachCategory[categoryID]:
-                    newFoodItemModel = {
-                        self.food.foodID: eachFoodItem[self.food.foodID],
-                        self.food.foodName: eachFoodItem[self.food.foodName],
-                        self.foodInv.amount: eachFoodItem[self.foodInv.amount]
-                    }
+                    newFoodItemModel = self.foodItemsModel(eachFoodItem)
                     if not foodItems in eachCategory:
                         eachCategory.update({foodItems:[]})
                     eachCategory[foodItems].append(newFoodItemModel)
 
         return json.dumps(jsonObjectCategories)
 
-
     def updateFoodInventory(self, content):
         self.foodInv.deleteFoodInventory()
+        status = {}
         for searcher in content:
             foodName = searcher[self.food.foodName]
             foodAmount = searcher[self.foodInv.amount]
             foodID = self.response.get(f"SELECT {self.food.foodID} FROM {self.food.table} WHERE {self.food.foodName} = '{foodName}'")
             foodID = json.loads(foodID)
          
-            jsonHolder = {
-                self.food.foodID:foodID[0]["foodID"],
-                self.foodInv.amount:foodAmount
-            }
-            self.foodInv.addFoodInventory(jsonHolder)
+            foodInvModel = self.addFoodInvModel(foodID[0][self.foodInv.foodID], foodAmount)
+            
+            status = self.foodInv.addFoodInventory(foodInvModel)
 
-        return{}
+        return status
+
+    def foodItemsModel(self, foodItem):
+        newFoodItemModel = {
+            self.food.foodID: foodItem[self.food.foodID],
+            self.food.foodName: foodItem[self.food.foodName],
+            self.foodInv.amount: foodItem[self.foodInv.amount]
+        }
+        return newFoodItemModel
+    
+    def addFoodInvModel(self, foodID, foodAmount):
+        foodInvModel = {
+            self.food.foodID:foodID[0][self.food.foodID],
+            self.foodInv.amount:foodAmount
+        }
+        return foodInvModel

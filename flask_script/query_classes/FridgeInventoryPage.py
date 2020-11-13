@@ -72,7 +72,7 @@ class FridgeInventoryPage:
     
     def addFoodInvModel(self, foodID, foodAmount):
         foodInvModel = {
-            self.food.foodID:foodID[0][self.food.foodID],
+            self.food.foodID:foodID,
             self.foodInv.amount:foodAmount
         }
         return foodInvModel

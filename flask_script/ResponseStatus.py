@@ -1,3 +1,4 @@
+import json
 badRES = {
     "status" : "ERROR"
 }
@@ -12,7 +13,8 @@ def checkGoodStatus(checkRes):
     return goodStatus
 
 def checkEmptyResponse(checkRes):
-    emptyRes = True
-    if (emptyRes != []):
-        emptyRes = False
+    checkRes = json.loads(checkRes)
+    emptyRes = False
+    if not checkRes:
+        emptyRes = True
     return emptyRes

@@ -51,7 +51,7 @@ class FridgeInventoryPage:
             foodName = searcher[self.food.foodName]
             foodAmount = searcher[self.foodInv.amount]
             foodID = self.response.get(f"SELECT {self.food.foodID} FROM {self.food.table} WHERE {self.food.foodName} = '{foodName}'")
-            if not checkEmptyResponse(foodID):
+            if checkEmptyResponse(foodID):
                 status = badRES
                 break
             foodID = json.loads(foodID)

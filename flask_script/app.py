@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify
-from Response import Response
 from flask_cors import CORS
 import LocalHostIP
 from query_classes.Category import Category
@@ -38,7 +37,6 @@ def getFoodInventory():
 
 @app.route("/api/addFoodInventory", methods=['POST'])
 def addFoodInventory():
-    response = Response()
     if not request.get_json():
         return jsonify(Data="Empty")
     # content = request.data
@@ -59,7 +57,6 @@ def getFoodInventoryByCat():
 
 @app.route("/api/updateFoodInventory", methods=['POST'])
 def updateFoodInventory():
-    response = Response()
     if not request.get_json():
         return jsonify(Data="Empty")
     content = request.get_json()

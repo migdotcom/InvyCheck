@@ -1,6 +1,7 @@
 import json
 from QueryEngine import QueryEngine
 import mysql.connector
+from ResponseStatus import badRES, goodRES, checkGoodStatus
 
 class Response:
     def __init__(self):
@@ -8,33 +9,35 @@ class Response:
         self.qe.connect()
 
     def get(self, query):
-        result = self.qe.get_query(query)
-        return result
+        response = {}
+        try:
+            response = self.qe.get_query(query)
+        except mysql.connector.Error as err:
+            response = badRES
+        return response
 
     def post(self, query):
-        status = "GOOD"
+        response = {}
         try:
             self.qe.do_query(query)
             self.qe.commit()
+            response = goodRES
         except mysql.connector.Error as err:
-            status = "ERROR"
-        response = {
-            "status": status
-        }
+            response = badRES
         return json.dumps(response)
 
     def delete(self, query):
-        status = "GOOD"
+        response = {}
         try:
             self.qe.do_query(query)
             self.qe.commit()
+            response = goodRES
         except mysql.connector.Error as err:
-            status = "ERROR"
-        response = {
-            "status": status
-        }
+            response = badRES
         return json.dumps(response)
 
     def put(self, query):
         result = self.qe.do_query(query)
         return result
+
+    

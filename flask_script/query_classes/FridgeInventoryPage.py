@@ -5,6 +5,7 @@ from .CategoryLookup import CategoryLookup
 from .Category import Category
 from .Food import Food
 from .FoodInventory import FoodInventory
+from ResponseStatus import *
 
 class FridgeInventoryPage:
     def __init__(self):
@@ -50,6 +51,9 @@ class FridgeInventoryPage:
             foodName = searcher[self.food.foodName]
             foodAmount = searcher[self.foodInv.amount]
             foodID = self.response.get(f"SELECT {self.food.foodID} FROM {self.food.table} WHERE {self.food.foodName} = '{foodName}'")
+            if not checkGoodStatus(foodID):
+                status = badRES
+                break
             foodID = json.loads(foodID)
          
             foodInvModel = self.addFoodInvModel(foodID[0][self.foodInv.foodID], foodAmount)

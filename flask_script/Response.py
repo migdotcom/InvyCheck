@@ -15,8 +15,9 @@ class Response:
         return {}
 
     def delete(self, query):
-        result = self.qe.do_query(query)
-        return result
+        self.qe.do_query(query)
+        self.qe.commit()
+        return {}
 
     def put(self, query):
         result = self.qe.do_query(query)

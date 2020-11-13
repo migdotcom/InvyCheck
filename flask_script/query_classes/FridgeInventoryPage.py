@@ -46,3 +46,20 @@ class FridgeInventoryPage:
                     eachCategory[foodItems].append(newFoodItemModel)
 
         return json.dumps(jsonObjectCategories)
+
+
+    def updateFoodInventory(self, content):
+        self.foodInv.deleteFoodInventory()
+        for searcher in content:
+            foodName = searcher[self.food.foodName]
+            foodAmount = searcher[self.foodInv.amount]
+            foodID = self.response.get(f"SELECT {self.food.foodID} FROM {self.food.table} WHERE {self.food.foodName} = '{foodName}'")
+            foodID = json.loads(foodID)
+         
+            jsonHolder = {
+                self.food.foodID:foodID[0]["foodID"],
+                self.foodInv.amount:foodAmount
+            }
+            self.foodInv.addFoodInventory(jsonHolder)
+
+        return{}

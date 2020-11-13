@@ -56,6 +56,16 @@ def getFoodInventoryByCat():
     fridgeInvPage = FridgeInventoryPage()
     result = fridgeInvPage.getFoodInventoryByCat()
     return result
+
+@app.route("/api/updateFoodInventory", methods=['POST'])
+def updateFoodInventory():
+    response = Response()
+    if not request.get_json():
+        return jsonify(Data="Empty")
+    content = request.get_json()
+    content = content['payload']
+    foodInventoryObj = FridgeInventoryPage()
+    return foodInventoryObj.updateFoodInventory(content)
     
 if __name__ == '__main__': 
     app.jinja_env.cache = {}

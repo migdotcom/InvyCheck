@@ -1,9 +1,7 @@
 from Response import Response
 import json
 from flask import Flask, request, jsonify
-from .CategoryLookup import CategoryLookup
-from .Category import Category
-from .Food import Food
+
 
 #Contains all queries for food_inventory Table
 class FoodInventory:
@@ -24,3 +22,10 @@ class FoodInventory:
         foodID = content[self.foodID]
         amount = content[self.amount]
         return self.response.post(f"INSERT INTO {self.table}({self.foodID}, {self.amount}) VALUES({foodID},{amount})")
+
+    def deleteFoodInventory(self):
+        result = self.response.delete(f"DELETE FROM {self.table}")
+        return result
+       
+
+

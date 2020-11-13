@@ -155,3 +155,4 @@ react/.pnp
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+react/src/LocalHostIP.js

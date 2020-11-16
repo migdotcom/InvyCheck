@@ -3,10 +3,16 @@ class RESTApi {
   constructor() {
     this.port = ip;
     this.getFridgeInventoryApi = "api/getFoodInventoryByCat";
+    this.updateFridgeInventoryApi = "api/updateFoodInventory";
   }
 
   getFridgeInventory(){
     const endpoint = this.port + this.getFridgeInventoryApi;
+    return endpoint;
+  }
+
+  updateFridgeInventory(){
+    const endpoint = this.port + this.updateFridgeInventoryApi;
     return endpoint;
   }
 

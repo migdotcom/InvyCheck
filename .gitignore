@@ -8,7 +8,7 @@ __pycache__/
 
 # Skip Host IP
 flask_script/LocalHostIP.py
-react/LocalHostIP.js
+react/src/LocalHostIP.js
 
 # Distribution / packaging
 .Python
@@ -155,4 +155,5 @@ react/.pnp
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+react/src/LocalHostIP.js
 react/src/LocalHostIP.js

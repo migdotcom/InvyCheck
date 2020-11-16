@@ -45,8 +45,8 @@ class FridgeInventoryPage:
         return json.dumps(jsonObjectCategories)
 
     def updateFoodInventory(self, content):
-        self.foodInv.deleteFoodInventory()
         status = {}
+        listFoodInvModels = []
         for searcher in content:
             foodName = searcher[self.food.foodName]
             foodAmount = searcher[self.foodInv.amount]
@@ -57,9 +57,12 @@ class FridgeInventoryPage:
             foodID = json.loads(foodID)
          
             foodInvModel = self.addFoodInvModel(foodID[0][self.foodInv.foodID], foodAmount)
+            listFoodInvModels.append(foodInvModel)
             
-            status = self.foodInv.addFoodInventory(foodInvModel)
-
+        if checkGoodStatus(status):
+            self.foodInv.deleteFoodInventory()
+            for eachFoodInvModel in listFoodInvModels:
+                status = self.foodInv.addFoodInventory(eachFoodInvModel)
         return status
 
     def foodItemsModel(self, foodItem):

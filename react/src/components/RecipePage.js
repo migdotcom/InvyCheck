@@ -34,7 +34,7 @@ export class Home extends React.Component {
       <React.Fragment>
         <CssBaseline />
         <Paper square className={classes.paper}>
-          <Typography className={classes.text} variant="h5" gutterBottom>
+          <Typography className={classes.text} variant="h4" gutterBottom>
             Recipe Suggestions
           </Typography>
           <List className={classes.list}>

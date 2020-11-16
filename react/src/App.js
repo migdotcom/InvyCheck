@@ -3,7 +3,7 @@ import "./App.css";
 import Home from "./components/Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Container from "@material-ui/core/Container";
-import RecipePage from "./components/RecipePage";
+import CapturePage from "./components/CapturePage";
 import NavigationBar from "./components/NavigationBar";
 
 class App extends Component {
@@ -19,6 +19,7 @@ class App extends Component {
       <Router>
         <div className="App">
             <Route exact path = "/" component = {NavigationBar}/>
+            <Route exact path = "/capture" component = {CapturePage}/>
         </div>
       </Router>
       

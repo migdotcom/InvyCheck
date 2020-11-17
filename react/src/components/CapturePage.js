@@ -9,6 +9,7 @@ import Fab from "@material-ui/core/Fab";
 import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import AppBar from './AppBar'
 
 const useStyles = (theme) => ({
   text: {
@@ -53,14 +54,11 @@ export class Home extends React.Component {
   }
   render() {
     const { classes } = this.props;
+    const title="Fridge View"
     return (
       <React.Fragment>
         <CssBaseline />
-        <Paper square className={classes.paper}>
-          <Typography className={classes.text} variant="h4" gutterBottom>
-            Fridge View
-          </Typography>
-        </Paper>
+        <AppBar titleName={title}/>
         <div className={classes.imageRoot}>
             <img className={classes.image} src={capture} />
         </div>

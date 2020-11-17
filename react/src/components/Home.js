@@ -1,6 +1,5 @@
 import React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -10,14 +9,17 @@ import axios from "axios";
 import { restController } from "./../helperClasses/RESTApi";
 import Fab from "@material-ui/core/Fab";
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
-import CircularProgress from '@material-ui/core/CircularProgress';
+import CircularProgress from "@material-ui/core/CircularProgress";
+import AppBar from './AppBar'
 
 const useStyles = (theme) => ({
   text: {
     padding: theme.spacing(2, 2, 0),
   },
   paper: {
-    paddingBottom: 50,
+    marginTop: "20%",
+    marginBottom: "20%",
+    paddingBottom: "50px",
     zIndex: 0,
     position: "relative",
   },
@@ -91,17 +93,19 @@ export class Home extends React.Component {
     this.state = {
       fridgeInventory: [],
       loadingCapture: false,
-      newFridgeItems: []
+      loadingItems: true,
+      newFridgeItems: [],
     };
   }
 
   handleClick(event) {
     let payload = sendPayload;
-    this.setState({loadingCapture: true});
-    axios.post(restController.updateFridgeInventory(), {payload}).then(res=>{
-      
-      window.location.href = "/capture"
-    });
+    this.setState({ loadingCapture: true });
+    axios
+      .post(restController.updateFridgeInventory(), { payload })
+      .then((res) => {
+        window.location.href = "/capture";
+      });
   }
 
   componentDidMount() {
@@ -109,29 +113,46 @@ export class Home extends React.Component {
   }
 
   getFridgeInventory() {
+    this.setState({loadingItems: true});
     axios.get(restController.getFridgeInventory()).then((res) => {
-      console.log(res.data[0]);
-      this.setState({ fridgeInventory: res.data });
-      console.log(this.state.fridgeInventory);
+      this.setState({ fridgeInventory: res.data, loadingItems: false });
     });
   }
 
-  render() {
+  renderLoadingCapture(loadingState){
     const { classes } = this.props;
     let captureIconComponent;
-    if (this.state.loadingCapture === true){
-      captureIconComponent = <CircularProgress size={25} color="secondary" className={classes.extendedIcon} />
+    if (loadingState) {
+      captureIconComponent = (
+        <CircularProgress
+          size={25}
+          color="secondary"
+          className={classes.extendedIcon}
+        />
+      );
+    } else {
+      captureIconComponent = (
+        <PhotoCameraIcon className={classes.extendedIcon} />
+      );
     }
-    else{
-      captureIconComponent = <PhotoCameraIcon className={classes.extendedIcon} />
-    }
-    return (
-      <React.Fragment>
-        <CssBaseline />
+    return captureIconComponent
+  }
+
+  renderLoadingItems(loadingState){
+    const { classes } = this.props;
+    let captureIconComponent;
+    if (loadingState) {
+      captureIconComponent = (
+        <CircularProgress
+          size={40}
+          color="secondary"
+          className={classes.extendedIcon}
+          style={{marginTop: "50%"}}
+        />
+      );
+    } else {
+      captureIconComponent = (
         <Paper square className={classes.paper}>
-          <Typography className={classes.text} variant="h4" gutterBottom>
-            Your Refrigerator
-          </Typography>
           <List className={classes.list}>
             {this.state.fridgeInventory.map(
               ({ categoryID, categoryName, foodItems }) => (
@@ -150,6 +171,20 @@ export class Home extends React.Component {
             )}
           </List>
         </Paper>
+      );
+    }
+    return captureIconComponent
+  }
+
+  render() {
+    const { classes } = this.props;
+    const title = "Your Refrigerator"
+    return (
+      <React.Fragment>
+        <CssBaseline />
+        <AppBar titleName={title}/>
+        {this.renderLoadingItems(this.state.loadingItems)}
+        
         <Fab
           variant="extended"
           size="medium"
@@ -158,7 +193,7 @@ export class Home extends React.Component {
           className={classes.fab}
           onClick={this.handleClick}
         >
-          {captureIconComponent}
+          {this.renderLoadingCapture(this.state.loadingCapture)}
           Capture
         </Fab>
       </React.Fragment>

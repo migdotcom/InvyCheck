@@ -4,6 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import List from "@material-ui/core/List";
 import { withStyles } from "@material-ui/core/styles";
+import AppBar from './AppBar'
 
 const useStyles = (theme) => ({
   text: {
@@ -30,16 +31,11 @@ export class Home extends React.Component {
   }
   render() {
     const { classes } = this.props;
+    const title="Recipe Suggestion"
     return (
       <React.Fragment>
         <CssBaseline />
-        <Paper square className={classes.paper}>
-          <Typography className={classes.text} variant="h4" gutterBottom>
-            Recipe Suggestions
-          </Typography>
-          <List className={classes.list}>
-          </List>
-        </Paper>
+        <AppBar titleName={title}/>
       </React.Fragment>
     );
   }

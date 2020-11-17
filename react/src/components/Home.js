@@ -17,8 +17,8 @@ const useStyles = (theme) => ({
     padding: theme.spacing(2, 2, 0),
   },
   paper: {
-    marginTop: "20%",
-    marginBottom: "20%",
+    marginTop: "80px",
+    marginBottom: "50px",
     paddingBottom: "50px",
     zIndex: 0,
     position: "relative",
@@ -147,7 +147,7 @@ export class Home extends React.Component {
           size={40}
           color="secondary"
           className={classes.extendedIcon}
-          style={{marginTop: "50%"}}
+          style={{marginTop: "200px"}}
         />
       );
     } else {
@@ -178,7 +178,7 @@ export class Home extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const title = "Your Refrigerator"
+    const title = "Your Fridge"
     return (
       <React.Fragment>
         <CssBaseline />

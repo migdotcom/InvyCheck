@@ -29,8 +29,8 @@ const useStyles = (theme) => ({
     marginRight: theme.spacing(1),
   },
   imageRoot: {
-    top: "25%",
-    position: "fixed"
+    marginTop: "200px",
+    marginBottom: "80px"
   },
   image: {
     border: "1px solid #ddd",

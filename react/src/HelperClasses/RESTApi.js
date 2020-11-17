@@ -2,6 +2,10 @@ import {ip} from './../LocalHostIP';
 class RESTApi {
   constructor() {
     this.port = ip;
+    this.recipeAPI = "https://api.spoonacular.com/"
+    this.apiKEY = "&apiKey=c54c5e3dc245439dbfad8b86ffa788b9"
+    this.findByIngredientsApi="recipes/findByIngredients?ingredients="
+    this.numberOfIngredient = "&number=4&ignorePantry=true"
     this.getFridgeInventoryApi = "api/getFoodInventoryByCat";
     this.updateFridgeInventoryApi = "api/updateFoodInventory";
   }
@@ -16,6 +20,15 @@ class RESTApi {
     return endpoint;
   }
 
+  getRecipeFromIngredient(allIngredients){
+    let combineIngredients = this.findByIngredientsApi + allIngredients[0];
+    for(let i = 1; i < allIngredients.length; i++){
+      combineIngredients += ",+" + allIngredients[i];
+    }
+    const endpoint = this.recipeAPI + combineIngredients + this.numberOfIngredient + this.apiKEY;
+    return endpoint
+  }
+
   storeAllQuery(searchQuery){
     let query = '';
     for (const key of Object.keys(searchQuery)){
@@ -24,7 +37,6 @@ class RESTApi {
         query = query + key + '=' + searchQuery[key];
       }
     }
-
     return query;
   }
 

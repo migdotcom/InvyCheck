@@ -1,14 +1,9 @@
 import React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
 import { withStyles } from "@material-ui/core/styles";
-import Image from "material-ui-image";
 import capture from "./../capture/capture.jpg";
 import Fab from "@material-ui/core/Fab";
 import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import AppBar from './AppBar'
 
 const useStyles = (theme) => ({
@@ -48,7 +43,7 @@ const useStyles = (theme) => ({
   }
 });
 
-export class Home extends React.Component {
+export class CapturePage extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -80,4 +75,4 @@ export class Home extends React.Component {
   }
 }
 
-export default withStyles(useStyles)(Home);
+export default withStyles(useStyles)(CapturePage);

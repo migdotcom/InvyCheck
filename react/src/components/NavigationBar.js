@@ -36,7 +36,6 @@ export class NavigationBar extends React.Component {
 
   handleChange(event, newValue) {
     this.setState({ value: newValue });
-    console.log(newValue);
   }
 
   renderPage() {

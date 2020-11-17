@@ -112,11 +112,16 @@ export class Home extends React.Component {
     this.getFridgeInventory();
   }
 
+  componentWillUnmount(){
+    localStorage.setItem("fridgeInventory", JSON.stringify(this.state.fridgeInventory));
+  }
+
   getFridgeInventory() {
     this.setState({loadingItems: true});
     axios.get(restController.getFridgeInventory()).then((res) => {
       this.setState({ fridgeInventory: res.data, loadingItems: false });
     });
+   
   }
 
   renderLoadingCapture(loadingState){

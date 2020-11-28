@@ -99,11 +99,11 @@ export class Home extends React.Component {
   }
 
   handleClick(event) {
-    let payload = sendPayload;
     this.setState({ loadingCapture: true });
-    axios
-      .post(restController.updateFridgeInventory(), { payload })
-      .then((res) => {
+    axios.get("http://127.0.0.1:5000/api/capture").then((res) => {
+      let payload = res.data;
+      return axios.post(restController.updateFridgeInventory(), { payload })
+    }).then((res) => {
         window.location.href = "/capture";
       });
   }
